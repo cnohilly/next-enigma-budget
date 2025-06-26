@@ -3,16 +3,28 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+import { Button, Container, Grid, Stack } from '@mui/material';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     return (
-        <Box borderLeft="4px solid #0d47a1" padding="1rem">
-            <Typography variant="h5">Dashboard Area</Typography>
-            <nav style={{ marginBottom: '1rem' }}>
-                <Link href="/dashboard" color="primary" sx={{ mr: 2 }}>Overview</Link>
-                <Link href="/dashboard/settings" color="primary">Settings</Link>
-            </nav>
-            {children}
-        </Box>
+        <Grid container>
+            <Grid size={2}>
+                <Typography variant="h5">Dashboard</Typography>
+                <Stack component="nav" spacing={1}>
+                    <Button color="inherit" variant="contained" LinkComponent={Link} href="/dashboard">
+                        Overview
+                    </Button>
+                    <Button color="inherit" variant="contained" LinkComponent={Link} href="/dashboard/config">
+                        Bank Configuration
+                    </Button>
+                    <Button color="inherit" variant="contained" LinkComponent={Link} href="/dashboard/settings">
+                        Settings
+                    </Button>
+                </Stack>
+            </Grid>
+            <Grid size={10} component={Container}>
+                {children}
+            </Grid>
+        </Grid>
     );
 }
